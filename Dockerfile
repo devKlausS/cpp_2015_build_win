@@ -1,4 +1,8 @@
-FROM microsoft/windowsservercore:latest    
+FROM microsoft/windowsservercore:10.0.14393.1770    
+
+#switch to nanoserver as soon as chocolatey supports it https://chocolatey.org/docs/roadmap#chocolatey
+#FROM microsoft/nanoserver:10.0.14393.1770    
+
 MAINTAINER klaus_schaeffer
 
 ENV ChocolateyUseWindowsCompression false
