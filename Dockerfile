@@ -13,8 +13,8 @@ RUN powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object Sys
 RUN choco install git.install -y 
 
 # Install PowerShell modules
-RUN powershell Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-RUN powershell Install-Module -Name 'posh-git'
+#RUN powershell Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+#RUN powershell Install-Module -Name 'posh-git'
 
 # Install vs2015 build tool
 RUN choco install vcbuildtools -y 
@@ -22,13 +22,12 @@ RUN choco install vcbuildtools -y
 # Install Visual Leak Detector
 RUN choco install visualleakdetector -y 
 
-# Install CMake
-RUN choco install cmake.install -y
-ENV Path=%Path%;"c:\Program Files\CMake\bin"
-
 # Install NASM
 RUN choco install nasm -y
 ENV YASM_PATH="C:\Program Files\NASM\nasm.exe"
+
+# Install CMake
+RUN choco install cmake.install -y --installargs ADD_CMAKE_TO_PATH=System
 
 # Install DXSDK
 RUN git clone https://github.com/devKlausS/dxsdk.git C:\dev\dxsdk
